@@ -121,22 +121,11 @@ function convert(o, s) {
   return s.replace(/§\([0-9]+\)/g, function(v) { return fake[v]; });
 }
 
-function action_to_unicode() {
-  var from = document.getElementById("mdc");
-  var to = document.getElementById("uni");
+function action(e, f, t) {
+  var from = document.getElementById(f);
+  var to = document.getElementById(t);
   if (from.value != "") {
-    to.value = convert(toUni, from.value);
-    from.value = "";
-    to.select();
-  }
-  return;
-}
-
-function action_to_ascii() {
-  var from = document.getElementById("uni");
-  var to = document.getElementById("mdc");
-  if (from.value != "") {
-    to.value = convert(toAscii, from.value);
+    to.value = convert(e, from.value);
     from.value = "";
     to.select();
   }
@@ -189,8 +178,8 @@ durchsucht werden können.
 </textarea>
 </td>
 <td>
-<input type="button" value=">>" onclick="action_to_unicode()" /><br />
-<input type="button" value="&lt;&lt;" onclick="action_to_ascii()" />
+<input type="button" value=">>" onclick="action(toUni, 'mdc', 'uni')" /><br />
+<input type="button" value="&lt;&lt;" onclick="action(toAscii, 'uni', 'mdc')" />
 </td>
 <td>
 <textarea rows="10" cols="40" id="uni">
